@@ -177,6 +177,9 @@ You can add an entry to the Windows Explorer context menu to easily generate the
 
    ```
 
+   >[!Atention]
+   > The encoding of this file must be `UTF-16LE` or `Windows-1251` for the system to recognize it as a valid registry file.
+
 2. Explanation:
    - `[HKEY_CLASSES_ROOT\Directory\shell\GenerateDirectoryTree]`: This key defines the entry in the context menu when you right-click on a directory.
    - `@="Catalog tree generation"`: This is the name that will be displayed in the context menu (translated as "Generate Directory Tree").
