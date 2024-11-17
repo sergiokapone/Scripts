@@ -32,7 +32,7 @@ Directories appearing before files both cases.
 2. **Generate a directory tree for a specific path, sorted alphabetically by name**:
 
    ```powershell
-   .\Get-Tree.ps1 -Path "C:\MyProject" -SortBy "name"
+   .\Get-Tree.ps1 -Path "C:\Test" -SortBy "name"
 
    ```
 
@@ -97,7 +97,7 @@ Directories appearing before files both cases.
 3. **Generate a directory tree for a specific path, sorted by type (directories first)**:
 
    ```powershell
-   .\Get-Tree.ps1 -Path "C:\MyProject" -SortBy "ext"
+   .\Get-Tree.ps1 -Path "C:\Test" -SortBy "ext"
 
    ```
 
@@ -170,10 +170,10 @@ You can add an entry to the Windows Explorer context menu to easily generate the
    Windows Registry Editor Version 5.00
 
    [HKEY_CLASSES_ROOT\Directory\shell\GenerateDirectoryTree]
-   @="Генерация дерева каталогов"
+   @="Catalog tree generation"
 
    [HKEY_CLASSES_ROOT\Directory\shell\GenerateDirectoryTree\command]
-   @=powershell -NoExit -ExecutionPolicy Bypass -File \"%commander_path%\\Scripts\\tree.ps1\" -Path \"%V\"
+   @=powershell -NoExit -ExecutionPolicy Bypass -File \"Parth\\to\\Get-Tree.ps1\" -Path \"%V\"
 
    ```
 
