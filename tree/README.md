@@ -23,7 +23,7 @@ Directories appearing before files both cases.
 
 ### Example Usage
 
-1. **Generate a directory tree for the current directory, sorted by type (directories first)**:
+1. **Generate a directory tree for a specific path, sorted files by extension by defaut**:
 
    ```powershell
    .\Get-Tree.ps1
@@ -94,7 +94,7 @@ Directories appearing before files both cases.
 
    ```
 
-3. **Generate a directory tree for a specific path, sorted by type (directories first)**:
+3. **Generate a directory tree for a specific path, sorted by extension**:
 
    ```powershell
    .\Get-Tree.ps1 -Path "C:\Test" -SortBy "ext"
