@@ -1,6 +1,6 @@
 param(
     [string]$Path = ".",
-    [string]$SortBy = "type"  # 'type' or 'name'
+    [string]$SortBy = "ext"  # 'name' или 'ext' (по расширению файлов)
 )
 
 function Get-Tree {
@@ -14,12 +14,21 @@ function Get-Tree {
     # Получаем список файлов и директорий, исключая ненужные
     $Items = Get-ChildItem -LiteralPath $Path | Where-Object { $_.Name -notin ".venv", "__pycache__", ".git" }
 
-    # Сортируем по имени или по типу (директории первыми)
-    if ($SortBy -eq "type") {
-        $Items = $Items | Sort-Object @{ Expression = { -not $_.PSIsContainer } }, Name
+    # Разделяем на директории и файлы
+    $Directories = $Items | Where-Object { $_.PSIsContainer } | Sort-Object Name  # Директории всегда сортируются по имени
+    $Files = $Items | Where-Object { -not $_.PSIsContainer }
+
+    # Сортировка файлов
+    if ($SortBy -eq "ext") {
+        # Сортировка файлов по расширению (и затем по имени)
+        $Files = $Files | Sort-Object Extension, Name
     } else {
-        $Items = $Items | Sort-Object Name
+        # Сортировка файлов по имени
+        $Files = $Files | Sort-Object Name
     }
+
+    # В корне директории идут первыми, затем файлы, сортированные по выбранному типу
+    $Items = @($Directories) + @($Files)
 
     # Пробегаемся по каждому элементу
     for ($i = 0; $i -lt $Items.Count; $i++) {

@@ -17,8 +17,9 @@ To run the script, use PowerShell and specify optional parameters.
 
 - **`Path`** (optional): The path to the directory you want to list. Defaults to the current directory (`"."`).
 - **`SortBy`** (optional): Defines how the items should be sorted:
-  - `"type"`: Sort by type, with directories appearing before files, both sorted alphabetically.
-  - `"name"`: Sort alphabetically by name (both files and directories).
+  - `"ext"`: Files sorted first by extension.
+  - `"name"`: Sort files alphabetically by name.
+Directories appearing before files both cases.
 
 ### Example Usage
 
@@ -27,48 +28,135 @@ To run the script, use PowerShell and specify optional parameters.
    ```powershell
    .\Get-Tree.ps1
     ```
-  
+
 2. **Generate a directory tree for a specific path, sorted alphabetically by name**:
 
    ```powershell
    .\Get-Tree.ps1 -Path "C:\MyProject" -SortBy "name"
-   
+
+   ```
+
+   Example of output win option `-SortBy "name"`:
+
+   ```txt
+   C:\Test\
+   ├── a/
+   │   ├── a.abc
+   │   ├── a.ps1
+   │   ├── a.py
+   │   ├── a.txt
+   │   ├── b.abc
+   │   ├── b.ps1
+   │   ├── b.py
+   │   ├── b.txt
+   │   ├── c.abc
+   │   ├── c.ps1
+   │   ├── c.py
+   │   └── c.txt
+   ├── b/
+   │   ├── a.abc
+   │   ├── a.ps1
+   │   ├── a.py
+   │   ├── a.txt
+   │   ├── b.abc
+   │   ├── b.ps1
+   │   ├── b.py
+   │   ├── b.txt
+   │   ├── c.abc
+   │   ├── c.ps1
+   │   ├── c.py
+   │   └── c.txt
+   ├── c/
+   │   ├── a.abc
+   │   ├── a.ps1
+   │   ├── a.py
+   │   ├── a.txt
+   │   ├── b.abc
+   │   ├── b.ps1
+   │   ├── b.py
+   │   ├── b.txt
+   │   ├── c.abc
+   │   ├── c.ps1
+   │   ├── c.py
+   │   └── c.txt
+   ├── a.abc
+   ├── a.ps1
+   ├── a.py
+   ├── a.txt
+   ├── b.abc
+   ├── b.ps1
+   ├── b.py
+   ├── b.txt
+   ├── c.abc
+   ├── c.ps1
+   ├── c.py
+   └── c.txt
+
    ```
 
 3. **Generate a directory tree for a specific path, sorted by type (directories first)**:
 
    ```powershell
-   .\Get-Tree.ps1 -Path "C:\MyProject" -SortBy "type"
-   
+   .\Get-Tree.ps1 -Path "C:\MyProject" -SortBy "ext"
+
    ```
 
-### Example Output
+   Example of output win option `-SortBy "ext"`:
 
-Sorted by Type (Directories First):
-
-```txt
-C:\MyProject
-├── src/
-│   ├── app/
-│   │   ├── module1/
-│   │   └── module2/
-│   └── utils/
-├── README.md
-└── .git/
-```
-
-Sorted Alphabetically by Name:
-
-```txt
-C:\MyProject
-├── .git/
-├── README.md
-└── src/
-    ├── app/
-    │   ├── module1/
-    │   └── module2/
-    └── utils/
-```
+   ```txt
+   C:\Test\
+   ├── a/
+   │   ├── a.abc
+   │   ├── b.abc
+   │   ├── c.abc
+   │   ├── a.ps1
+   │   ├── b.ps1
+   │   ├── c.ps1
+   │   ├── a.py
+   │   ├── b.py
+   │   ├── c.py
+   │   ├── a.txt
+   │   ├── b.txt
+   │   └── c.txt
+   ├── b/
+   │   ├── a.abc
+   │   ├── b.abc
+   │   ├── c.abc
+   │   ├── a.ps1
+   │   ├── b.ps1
+   │   ├── c.ps1
+   │   ├── a.py
+   │   ├── b.py
+   │   ├── c.py
+   │   ├── a.txt
+   │   ├── b.txt
+   │   └── c.txt
+   ├── c/
+   │   ├── a.abc
+   │   ├── b.abc
+   │   ├── c.abc
+   │   ├── a.ps1
+   │   ├── b.ps1
+   │   ├── c.ps1
+   │   ├── a.py
+   │   ├── b.py
+   │   ├── c.py
+   │   ├── a.txt
+   │   ├── b.txt
+   │   └── c.txt
+   ├── a.abc
+   ├── b.abc
+   ├── c.abc
+   ├── a.ps1
+   ├── b.ps1
+   ├── c.ps1
+   ├── a.py
+   ├── b.py
+   ├── c.py
+   ├── a.txt
+   ├── b.txt
+   └── c.txt
+   ```
 
 ### Context Menu Integration (Windows Only)
 
