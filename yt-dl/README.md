@@ -58,6 +58,40 @@ powershell -ExecutionPolicy Bypass -File "path\to\yt-dlp.ps1" "output\path"
 powershell -ExecutionPolicy Bypass -File "path\to\yt-dlp-audio.ps1" -OutputPath "output\path"
 ```
 
+### Running Script with Total commander Buttons
+
+If you want to use scripts as buttons, copy the text of the button and paste it into the panel.
+
+To download the video:
+
+```text
+TOTALCMD#BAR#DATA
+powershell %Utility%\yt-dl\yt-dlp-video.ps1
+"%P\"
+%Utility%\yt-dl\yt-dlp.exe
+Download VIDEO from Youtube (from buffer)
+.
+
+-1
+
+```
+
+To download the audio:
+
+```text
+TOTALCMD#BAR#DATA
+powershell %Utility%\yt-dl\yt-dlp-audio.ps1
+"%P\"
+%Utility%\yt-dl\yt-dlp.exe
+Скачать AUDIO с Youtube (from buffer)
+.
+
+-1
+
+```
+
+As always, replace the appropriate script file paths with your own.
+
 ## Notes
 
 - Ensure the URL is copied to your clipboard before using the scripts.  
