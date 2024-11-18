@@ -8,7 +8,7 @@
 # ffmpeg Builds -- https://github.com/yt-dlp/FFmpeg-Builds/releases
 
 param (
-    [string]$OutputPath  # Путь по умолчанию
+    [string]$OutputPath
 )
 
 $downloads = (Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders').{ 374DE290-123F-4565-9164-39C4925E467B }
@@ -16,7 +16,7 @@ $downloads = (Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVe
 
 # Проверка, существует ли папка
 if (-not (Test-Path $OutputPath)) {
-    Write-Output "Указанная папка не существует. Используйте путь по умолчанию: $downloads"
+    Write-Output "The specified folder does not exist. Use the default path: $downloads"
     $OutputPath = "$downloads"  # Если нет, использовать путь по умолчанию
 }
 

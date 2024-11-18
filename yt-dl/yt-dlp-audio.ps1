@@ -8,13 +8,15 @@
 # ffmpeg Builds -- https://github.com/yt-dlp/FFmpeg-Builds/releases
 
 param (
-    [string]$OutputPath = "$env:USERPROFILE\Downloads"  # Путь по умолчанию
+    [string]$OutputPath
 )
+
+$downloads = (Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders').{ 374DE290-123F-4565-9164-39C4925E467B }
 
 # Проверка, существует ли папка
 if (-not (Test-Path $OutputPath)) {
-    Write-Output "Указанная папка не существует. Используйте путь по умолчанию: $env:USERPROFILE\Downloads"
-    $OutputPath = "$env:USERPROFILE\Downloads"  # Если нет, использовать путь по умолчанию
+    Write-Output "The specified folder does not exist. Use the default path: $downloads"
+    $OutputPath = "$downloads"  # Если нет, использовать путь по умолчанию
 }
 
 # Получение URL из буфера обмена
@@ -46,13 +48,13 @@ if ($url) {
     }
     else {
         Write-Output "------------------------------------"
-        Write-Output "Аудиофайл успешно загружен и конвертирован в MP3 в: $OutputPath"
+        Write-Output "The audio file was successfully downloaded and converted to MP3 in the: $OutputPath"
         Write-Output "------------------------------------"
     }
     Set-Clipboard -Value $null
 }
 else {
-    Write-Output "В буфере обмена нет URL, выход."
+    Write-Output "There is no URL on the clipboard, the output."
     Wait-ForEnterKey
 }
 
