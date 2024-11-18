@@ -66,7 +66,7 @@ To download the video:
 
 ```text
 TOTALCMD#BAR#DATA
-powershell %Utility%\yt-dl\yt-dlp-video.ps1
+powershell -ExecutionPolicy Bypass -File %Utility%\yt-dl\yt-dlp-video.ps1
 "%P\"
 %Utility%\yt-dl\yt-dlp.exe
 Download VIDEO from Youtube (from buffer)
@@ -80,7 +80,7 @@ To download the audio:
 
 ```text
 TOTALCMD#BAR#DATA
-powershell %Utility%\yt-dl\yt-dlp-audio.ps1
+powershell -ExecutionPolicy Bypass -File %Utility%\yt-dl\yt-dlp-audio.ps1
 "%P\"
 %Utility%\yt-dl\yt-dlp.exe
 Скачать AUDIO с Youtube (from buffer)
