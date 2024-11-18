@@ -30,7 +30,16 @@ if ($url) {
     $outputTemplate = "$OutputPath\%(title).100s.%(ext)s"
 
     # Загрузка аудио и конвертация в MP3
-    & yt-dlp.exe -f "bestaudio" $url --autonumber-size 3 -o $outputTemplate -x --audio-format mp3 --audio-quality 3202K --embed-thumbnail --add-metadata
+    & yt-dlp.exe `
+        -f "bestaudio" `
+        $url `
+        -o "$OutputPath\%(title).100s.%(ext)s" `
+        -x `
+        --audio-format "mp3" `
+        --audio-quality "320k" `
+        --autonumber-size 3 `
+        --embed-thumbnail `
+        --add-metadata
 
     if ($LASTEXITCODE -ne 0) {
         Wait-ForEnterKey
