@@ -7,8 +7,18 @@
 # yt-dlp Builds -- https://github.com/yt-dlp/yt-dlp/releases
 # ffmpeg Builds -- https://github.com/yt-dlp/FFmpeg-Builds/releases
 
-# Locate %downloads% folder
+param (
+    [string]$OutputPath  # Путь по умолчанию
+)
+
 $downloads = (Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders').{ 374DE290-123F-4565-9164-39C4925E467B }
+
+
+# Проверка, существует ли папка
+if (-not (Test-Path $OutputPath)) {
+    Write-Output "Указанная папка не существует. Используйте путь по умолчанию: $downloads"
+    $OutputPath = "$downloads"  # Если нет, использовать путь по умолчанию
+}
 
 # Get url from the clipboard
 $url = Get-Clipboard
@@ -19,7 +29,14 @@ function Wait-ForEnterKey {
 }
 
 if ($url) {
-    & yt-dlp.exe -f "bestvideo+bestaudio/best" $url --autonumber-size 3 -P $args[0] -o "%(autonumber)s - %(title).100s.%(ext)s" --write-url-link --merge-output-format mkv
+    & yt-dlp.exe `
+        -f "bestvideo+bestaudio/best" `
+        $url `
+        --autonumber-size 3 `
+        -o "$OutputPath\%(autonumber)s - %(title).100s.%(ext)s" `
+        --write-url-link `
+        --merge-output-format mkv
+
     if ($LASTEXITCODE -ne 0) {
         Wait-ForEnterKey
     }
