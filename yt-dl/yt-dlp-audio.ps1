@@ -1,3 +1,12 @@
+# Downloading Video from Internet into %downloads% via URL in the Clipboard
+# Notes:
+# ffmpeg and ffprobe required for merging separate video and audio files
+#                    as well as for various post-processing tasks
+# for correct function put yt-dlp and ffmpeg executables next to .ps1 or in %path%
+# Downloads:
+# yt-dlp Builds -- https://github.com/yt-dlp/yt-dlp/releases
+# ffmpeg Builds -- https://github.com/yt-dlp/FFmpeg-Builds/releases
+
 param (
     [string]$OutputPath = "$env:USERPROFILE\Downloads"  # Путь по умолчанию
 )
