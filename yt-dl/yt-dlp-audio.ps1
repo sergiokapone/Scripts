@@ -13,9 +13,13 @@ param (
 
 $downloads = (Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders').{ 374DE290-123F-4565-9164-39C4925E467B }
 
+
+Write-Host "Start downloading a AUDIO file" -ForegroundColor Green
+
+
 # Проверка, существует ли папка
 if (-not (Test-Path $OutputPath)) {
-    Write-Output "The specified folder does not exist. Use the default path: $downloads"
+    Write-Host "The specified folder does not exist. Use the default path: $downloads" -ForegroundColor Red
     $OutputPath = "$downloads"  # Если нет, использовать путь по умолчанию
 }
 
@@ -47,14 +51,15 @@ if ($url) {
         Wait-ForEnterKey
     }
     else {
-        Write-Output "------------------------------------"
-        Write-Output "The audio file was successfully downloaded and converted to MP3 in the: $OutputPath"
-        Write-Output "------------------------------------"
+        Write-Host "------------------------------------"
+        Write-Host "The audio file was successfully downloaded and converted to MP3 in the: $OutputPath" -ForegroundColor Green
+        Write-Host "------------------------------------"
     }
+    Start-Sleep -Seconds 1
     Set-Clipboard -Value $null
 }
 else {
-    Write-Output "There is no URL on the clipboard, the output."
+    Write-Host "There is no URL on the clipboard, the output." -ForegroundColor Red
     Wait-ForEnterKey
 }
 

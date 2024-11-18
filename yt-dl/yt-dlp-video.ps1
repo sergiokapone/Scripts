@@ -13,10 +13,12 @@ param (
 
 $downloads = (Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders').{ 374DE290-123F-4565-9164-39C4925E467B }
 
+Write-Host "Start downloading a VIDEO file" -ForegroundColor Green
+
 
 # Проверка, существует ли папка
 if (-not (Test-Path $OutputPath)) {
-    Write-Output "The specified folder does not exist. Use the default path: $downloads"
+    Write-Host "The specified folder does not exist. Use the default path: $downloads" -ForegroundColor Red
     $OutputPath = "$downloads"  # Если нет, использовать путь по умолчанию
 }
 
@@ -41,14 +43,15 @@ if ($url) {
         Wait-ForEnterKey
     }
     else {
-        Write-Output "------------------------------------"
-        Write-Output "Downloaded in $args"
-        Write-Output "------------------------------------"
+        Write-Host "------------------------------------"
+        Write-Host "Downloaded in $OutputPath" -ForegroundColor Green
+        Write-Host "------------------------------------"
     }
+    Start-Sleep -Seconds 1
     Set-Clipboard -Value $null
 }
 else {
-    Write-Output "There's no URL in the clipboard, exiting"
+    Write-Host "There's no URL in the clipboard, exiting" -ForegroundColor Red
     Wait-ForEnterKey
 }
 
