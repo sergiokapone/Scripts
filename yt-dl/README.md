@@ -16,7 +16,7 @@ This repository contains PowerShell scripts and a registry file to simplify down
 ## Prerequisites
 
 1. **yt-dlp**: Download the latest version from [yt-dlp releases](https://github.com/yt-dlp/yt-dlp/releases).  
-2. **ffmpeg**: Required for merging video and audio files. Download from [FFmpeg Builds](https://github.com/yt-dlp/FFmpeg-Builds/releases).  
+2. **ffmpeg**: Required for merging video and audio files. Download from [FFmpeg Builds](https://www.gyan.dev/ffmpeg/builds/).  
 3. **PowerShell**: Ensure you have PowerShell installed on your system (default on Windows 10 and later).  
 4. **Administrator Rights**: Required for registry modifications to enable the context menu.
 
