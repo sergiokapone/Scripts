@@ -4,13 +4,13 @@ This repository contains PowerShell scripts and a registry file to simplify down
 
 ## Features
 
-- **Video Downloader (`yt-dlp.ps1`)**  
+- **Video Downloader (`yt-dlp-video.ps1`)**  
   Downloads the best available video and audio and merges them into a single `.mkv` file.
 
 - **Audio Downloader (`yt-dlp-audio.ps1`)**  
   Downloads the best available audio, converts it to `.mp3` format with embedded metadata and thumbnails.
 
-- **Context Menu Integration (`youtube-dlp.reg`)**  
+- **Context Menu Integration (`add_context_menu.reg`)**  
   Adds options to the Windows context menu for downloading video or audio directly from a clipboard URL.
 
 ## Prerequisites
@@ -28,13 +28,13 @@ This repository contains PowerShell scripts and a registry file to simplify down
    - Added to your system's `%PATH%`.
 
 2. **Edit Script Paths**  
-   - Update the paths in the `youtube-dlp.reg` file to match the location of your `yt-dlp.ps1` and `yt-dlp-audio.ps1` scripts.
+   - Update the paths in the `add_context_menu.reg` file to match the location of your `yt-dlp-video.ps1` and `yt-dlp-audio.ps1` scripts.
 
 3. **Apply Registry Changes**  
-   Run `youtube-dlp.reg` by double-clicking it or using the command:
+   Run `add_context_menu.reg` by double-clicking it or using the command:
 
    ```powershell
-   regedit.exe youtube-dlp.reg
+   regedit.exe add_context_menu.reg.reg
    ```
 
 ## Usage
@@ -42,11 +42,11 @@ This repository contains PowerShell scripts and a registry file to simplify down
 ### Context Menu Options
 
 - **Download Video**  
-  Right-click on a folder in File Explorer, and select **"Скачать видео по ссылке из буфера"**.  
+  Right-click on a folder in File Explorer, and select **"Download video by link from buffer"**.  
   This will download the video corresponding to the URL currently in your clipboard to the selected folder.
 
 - **Download Audio**  
-  Right-click on a folder in File Explorer, and select **"Скачать аудио по ссылке из буфера"**.  
+  Right-click on a folder in File Explorer, and select **"Download audio from a link from the buffer"**.  
   This will download and convert the audio to `.mp3`, saving it in the selected folder.
 
 ### Running Scripts Directly
@@ -54,8 +54,8 @@ This repository contains PowerShell scripts and a registry file to simplify down
 You can also run the scripts directly from PowerShell. For example:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File "path\to\yt-dlp.ps1" "output\path"
-powershell -ExecutionPolicy Bypass -File "path\to\yt-dlp-audio.ps1" -OutputPath "output\path"
+powershell -ExecutionPolicy Bypass -File "yt-dlp-video.ps1" -OutputPath "output\path"
+powershell -ExecutionPolicy Bypass -File "yt-dlp-audio.ps1" -OutputPath "output\path"
 ```
 
 ### Running Script with Total commander Buttons
@@ -66,10 +66,10 @@ To download the video:
 
 ```text
 TOTALCMD#BAR#DATA
-powershell -ExecutionPolicy Bypass -File %Utility%\yt-dl\yt-dlp-video.ps1
+powershell -ExecutionPolicy Bypass -File yt-dlp-video.ps1
 "%P\"
-%Utility%\yt-dl\yt-dlp.exe
-Download VIDEO from Youtube (from buffer)
+yt-dlp.exe
+Download video by link from buffer
 .
 
 -1
@@ -80,10 +80,10 @@ To download the audio:
 
 ```text
 TOTALCMD#BAR#DATA
-powershell -ExecutionPolicy Bypass -File %Utility%\yt-dl\yt-dlp-audio.ps1
+powershell -ExecutionPolicy Bypass -File yt-dlp-audio.ps1
 "%P\"
-%Utility%\yt-dl\yt-dlp.exe
-Скачать AUDIO с Youtube (from buffer)
+yt-dlp.exe
+Download audio by link from buffer
 .
 
 -1
