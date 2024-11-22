@@ -30,6 +30,8 @@ function Get-Tree {
     # В корне директории идут первыми, затем файлы, сортированные по выбранному типу
     $Items = @($Directories) + @($Files)
 
+    $TreeOutput = ""  # Переменная для накопления текста дерева
+
     # Пробегаемся по каждому элементу
     for ($i = 0; $i -lt $Items.Count; $i++) {
         $Item = $Items[$i]
@@ -37,21 +39,32 @@ function Get-Tree {
         $Symbol = if ($IsLastItem) { "└──" } else { "├──" }
 
         # Формируем вывод строки для файла или директории
-        Write-Host "$Prefix$Symbol $($Item.Name)" -NoNewline
+        $TreeOutput += "$Prefix$Symbol $($Item.Name)" 
         if ($Item.PSIsContainer) {
-            Write-Host "/"  # Добавляем слэш, чтобы указать, что это директория
+            $TreeOutput += "/"  # Добавляем слэш, чтобы указать, что это директория
             # Рекурсивно обрабатываем поддиректории
             $newPrefix = if ($IsLastItem) { "$SubPrefix    " } else { "$SubPrefix│   " }
-            Get-Tree -Path $Item.FullName -Prefix $newPrefix -SubPrefix $newPrefix -IsLast:$IsLastItem
+            $TreeOutput += "`n"  # Перенос строки перед рекурсией
+            $TreeOutput += Get-Tree -Path $Item.FullName -Prefix $newPrefix -SubPrefix $newPrefix -IsLast:$IsLastItem
         } else {
-            Write-Host ""  # Печатаем пустую строку для файла
+            $TreeOutput += "`n"  # Печатаем пустую строку для файла
         }
     }
+
+    return $TreeOutput
 }
 
-# Вывод текущего каталога
-Write-Host "$(Get-Item -Path $Path)"
+# Получаем полный путь к текущей директории
+$CurrentPath = (Get-Item -Path $Path).FullName
 
-# Запуск функции для указанной директории
-Get-Tree -Path $Path
+# Получаем текст дерева для указанной директории
+$TreeText = Get-Tree -Path $Path
 
+# Добавляем полный путь в начало текста дерева
+$TreeOutput = "$CurrentPath`n$TreeText"
+
+# Копируем дерево в буфер обмена
+$TreeOutput | Set-Clipboard
+
+# Выводим дерево в консоль
+Write-Host $TreeOutput
